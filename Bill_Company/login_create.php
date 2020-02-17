@@ -28,32 +28,6 @@ error_reporting(0);
   session_start();
   include_once('connect.php');
 
-  // if (isset($_POST['submit'])) {
-  //   $username = $_POST['username'];
-  //   $password = $conn->real_escape_string($_POST['password']);
-
-  //   $sql = "SELECT * FROM `bill_member` WHERE `username` = '" . $username . "' AND `password` = '" . $password . "' ";
-  //   $result = $conn->query($sql);
-
-    //echo print_r($result);
-
-    // if ($result->num_rows > 0) {
-    //   $row = $result->fetch_assoc();
-    //   //echo $row['username'];
-    //   $_SESSION['id'] = $row['id'];
-    //   $_SESSION['username'] = $row['username'];
-    //   $_SESSION['permis'] = $row['permis'];
-    //   // echo  $_SESSION['permis'];
-    //   if ($_SESSION['permis'] == "Supplier") {
-    //     header('location:history.php');
-    //   } else {
-    //     header('location:history_member.php');
-    //   }
-    // } else {
-    //   echo 'username & password invalid';
-    // }
-//}
-
   ?>
 
   <div class="container">

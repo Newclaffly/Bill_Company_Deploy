@@ -29,7 +29,8 @@ if($_SESSION['username']==""){
 	ini_set('display_errors', 1);
 	error_reporting(~0);
 	date_default_timezone_set('Asia/Bangkok');
-	$date = date('Y-m-d h:i:s');
+	$date = date('d/m/Y');
+	// echo $date;
 	include_once('connect.php');
 	$sql = "UPDATE bill_data_message SET 
 			po = '" . $_POST["txtpo"] . "' ,

@@ -1,14 +1,5 @@
 <?php
 session_start();
-if($_SESSION['username']==""){
-
-	echo "<br><center><h3><font color=\"#CC0099\">คุณยังไม่ได้เข้าสู่ระบบ กรุณาเข้าสู่ระบบก่อน</font></h3></center>";
-	
-	echo "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"2;URL=login.php\">";
-	
-	exit();
-	
-	}
 error_reporting(0);
 ?>
 <!DOCTYPE html>
@@ -92,9 +83,9 @@ error_reporting(0);
       <?php
       if ($_SESSION['permis'] == "Supplier") {
         ?>
-        <a href="history.php" class="btn btn-info float-right">กลับหน้ารายการบันทึก</a>
+        <a href="history.php" class="btn btn-secondary float-right">กลับหน้ารายการบันทึก</a>
       <?php } else { ?>
-        <a href="history_member.php" class="btn btn-info float-right">กลับหน้ารายการบันทึก</a>
+        <a href="history_member.php" class="btn btn-secondary float-right">กลับหน้ารายการบันทึก</a>
       <?php } ?>
     </div>
   </div>

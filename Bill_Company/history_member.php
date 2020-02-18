@@ -94,7 +94,7 @@ if($_SESSION['username']==""){
 			<table id="myTable_cus" class="table table-striped table-bordered" style="width:100%">
 				<thead>
 					<tr>
-						<th>ลำดับ</th>
+						<!-- <th>ลำดับ</th> -->
 						<th>วันที่ออกเอกสาร</th>
 						<th>บริษัทออกใบบิล</th>
 						<th>วันครบกำหนด</th>
@@ -124,7 +124,7 @@ if($_SESSION['username']==""){
 						<form>
 
 							<div class="form-group">
-								<label for="id" class="col-form-label">ลำดับ:</label>
+								<label for="id" class="col-form-label">ID:</label>
 								<input type="text" class="form-control" disabled id="id">
 							</div>
 							<div class="form-group">

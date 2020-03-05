@@ -4,9 +4,9 @@ $temp = $_SESSION['username'];
 $date_expired = $_SESSION['date_expired'];
 if ($_SESSION['username'] == "") {
 
-    //echo "<br><center><h3><font color=\"#CC0099\">คุณยังไม่ได้เข้าสู่ระบบ กรุณาเข้าสู่ระบบก่อน</font></h3></center>";
+    echo "<br><center><h3><font color=\"#CC0099\">คุณยังไม่ได้เข้าสู่ระบบ กรุณาเข้าสู่ระบบก่อน</font></h3></center>";
 
-    //echo "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"2;URL=login.php\">";
+    echo "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"2;URL=login.php\">";
 
     exit();
 }

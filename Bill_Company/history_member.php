@@ -183,13 +183,13 @@ if ($_SESSION['username'] == "") {
                             <table id="myTable_cus" class="table table-striped table-bordered" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <!-- <th>ลำดับ</th> -->
-                                        <th>วันที่ออกเอกสาร</th>
-                                        <th>บริษัทลูกค้า</th>
-                                        <th>วันครบกำหนด</th>
-                                        <th>วันที่ลูกค้าเปิดอ่านเอกสาร</th>
-                                        <th>สถานะเอกสาร</th>
-                                        <th>เครื่องมือ</th>
+                                        <th class="text-center">เลขที่ PO</th>
+                                        <th class="text-center">วันที่ออกเอกสาร</th>
+                                        <th class="text-center">บริษัทผู้ประกอบการ</th>
+                                        <th class="text-center">วันครบกำหนด</th>
+                                        <th class="text-center">วันที่ลูกค้าเปิดอ่านเอกสาร</th>
+                                        <th class="text-center">สถานะเอกสาร</th>
+                                        <th class="text-center">เครื่องมือ</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -199,7 +199,7 @@ if ($_SESSION['username'] == "") {
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">
-                       
+
                         </div>
                         <!-- /.card-footer-->
                     </div>
@@ -243,12 +243,16 @@ if ($_SESSION['username'] == "") {
                             <input type="text" class="form-control" disabled id="id">
                         </div>
                         <div class="form-group">
+                            <label for="number_bill_bo" class="col-form-label">เลขที่ PO:</label>
+                            <input type="text" class="form-control" disabled id="number_bill_bo">
+                        </div>
+                        <div class="form-group">
                             <label for="start_date_bo" class="col-form-label">วันที่ออกเอกสาร:</label>
                             <input type="text" class="form-control" disabled id="start_date_bo">
                         </div>
                         <div class="form-group">
-                            <label for="name_company_cus" class="col-form-label">บริษัทออกใบบิล:</label>
-                            <input type="text" class="form-control" disabled id="name_company_cus">
+                            <label for="name_company_bo" class="col-form-label">บริษัทผู้ประกอบการ:</label>
+                            <input type="text" class="form-control" disabled id="name_company_bo">
                         </div>
                         <div class="form-group">
                             <label for="end_date_bo" class="col-form-label">วันครบกำหนด:</label>
@@ -262,12 +266,15 @@ if ($_SESSION['username'] == "") {
                             <label for="status_docs" class="col-form-label">สถานะเอกสาร:</label>
                             <input type="text" class="form-control" disabled id="status_docs">
                         </div>
+                        <div class="form-group">
+                            <input type="button" class="btn btn-success" id="export" onclick="getvalue_input_bill()" value="Export Excel" />
+                        </div>
                         <input type="hidden" id="customer_id">
                     </form>
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" onclick="Edit_rows()" class="btn btn-primary">Read</button>
+                    <button type="button" onclick="Edit_rows()" class="btn btn-primary">Stamp Time</button>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -302,9 +309,11 @@ if ($_SESSION['username'] == "") {
                 success: function(data) {
                     //alert(data);
                     var json = $.parseJSON(data);
+                    $('#number_bill_bo').val(json[0].number_bill_bo);
                     $('#id').val(json[0].id);
                     $('#start_date_bo').val(json[0].start_date_bo);
                     $('#name_company_cus').val(json[0].name_company_cus);
+                    $('#name_company_bo').val(json[0].name_company_bo);
                     $('#end_date_bo').val(json[0].end_date_bo);
                     $('#read_date_cus').val(json[0].read_date_cus);
                     $('#status_docs').val(json[0].status_docs);
@@ -314,6 +323,15 @@ if ($_SESSION['username'] == "") {
             // modal.find('.modal-title').text('Update Data No.' + id);
             // modal.find('.modal-body input').val(id);
         })
+
+
+        function getvalue_input_bill() {
+            var code_bill = document.getElementById("number_bill_bo").value;
+            // document.getElementById("demo").innerHTML = x;
+            console.log(code_bill);
+            // window.location.href = 'myfile/${code_bill}.xls';
+            location.href = "myfile/"+ String(code_bill) +".xls";
+        }
 
         // Edit
         function Edit_rows() {

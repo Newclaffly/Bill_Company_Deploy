@@ -115,12 +115,12 @@ if ($_SESSION['username'] == "") {
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
-                                <li class="nav-item">
+                                <!-- <li class="nav-item">
                                     <a href="change_time_ui.php" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Change Time Notification</p>
                                     </a>
-                                </li>
+                                </li> -->
                                 <li class="nav-item">
                                     <a href="login_forgot.php" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
@@ -188,13 +188,13 @@ if ($_SESSION['username'] == "") {
                             <table id="myTable" class="table table-striped table-bordered" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <!-- <th>ลำดับ</th> -->
-                                        <th>วันที่ออกเอกสาร</th>
-                                        <th>บริษัทลูกค้า</th>
-                                        <th>วันครบกำหนด</th>
-                                        <th>วันที่ลูกค้าเปิดอ่านเอกสาร</th>
-                                        <th>สถานะเอกสาร</th>
-                                        <th>เครื่องมือ</th>
+                                        <th class="text-center">เลขที่ PO</th>
+                                        <th class="text-center">วันที่ออกเอกสาร</th>
+                                        <th class="text-center">ชื่อบริษัทลูกค้า</th>
+                                        <th class="text-center">วันครบกำหนดใบวางบิล</th>
+                                        <th class="text-center">วันที่ลูกค้าเปิดอ่านเอกสาร</th>
+                                        <th class="text-center">สถานะเอกสาร</th>
+                                        <th class="text-center">เครื่องมือ</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -204,7 +204,7 @@ if ($_SESSION['username'] == "") {
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">
-                            Footer
+
                         </div>
                         <!-- /.card-footer-->
                     </div>
@@ -248,6 +248,10 @@ if ($_SESSION['username'] == "") {
                             <input type="text" class="form-control" disabled id="id">
                         </div>
                         <div class="form-group">
+                            <label for="number_bill_bo" class="col-form-label">เลขที่ PO:</label>
+                            <input type="text" class="form-control" disabled id="number_bill_bo">
+                        </div>
+                        <div class="form-group">
                             <label for="start_date_bo" class="col-form-label">วันที่ออกเอกสาร:</label>
                             <input type="text" class="form-control" disabled id="start_date_bo">
                         </div>
@@ -267,11 +271,15 @@ if ($_SESSION['username'] == "") {
                             <label for="status_docs" class="col-form-label ">สถานะเอกสาร:</label>
                             <input type="text" class="form-control" disabled id="status_docs">
                         </div>
+                        <!-- onclick="window.location.href = 'myfile/.xls';" -->
+                        <div class="form-group">
+                            <input type="button" class="btn btn-success" id="export" onclick="getvalue_input_bill()" value="Export Excel" />
+                        </div>
                         <input type="hidden" id="customer_id">
                     </form>
                 </div>
                 <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-default float-right" data-dismiss="modal">Close</button>
                     <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
                 </div>
             </div>
@@ -305,6 +313,14 @@ if ($_SESSION['username'] == "") {
 
             })
         }
+        //${age}
+        function getvalue_input_bill() {
+            var code_bill = document.getElementById("number_bill_bo").value;
+            // document.getElementById("demo").innerHTML = x;
+            console.log(code_bill);
+            // window.location.href = 'myfile/${code_bill}.xls';
+            location.href = "myfile/"+ String(code_bill) +".xls";
+        }
 
         $('#exampleModal').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget) // Button that triggered the modal
@@ -324,6 +340,7 @@ if ($_SESSION['username'] == "") {
                 success: function(data) {
                     //alert(data);
                     var json = $.parseJSON(data);
+                    $('#number_bill_bo').val(json[0].number_bill_bo);
                     $('#id').val(json[0].id);
                     $('#start_date_bo').val(json[0].start_date_bo);
                     $('#name_company_cus').val(json[0].name_company_cus);
